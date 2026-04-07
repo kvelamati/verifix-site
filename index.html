@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifix IO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #F6F5F2;
+            color: #111111;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.75rem;
+        }
+
+        .tagline {
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: #444444;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: #888888;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .signup {
+            display: flex;
+            gap: 0;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .signup input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9375rem;
+            border: 1px solid #D0CFC9;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            background: #FFFFFF;
+            color: #111111;
+            outline: none;
+        }
+
+        .signup input::placeholder {
+            color: #AAAAAA;
+        }
+
+        .signup input:focus {
+            border-color: #111111;
+        }
+
+        .signup button {
+            padding: 0.8rem 1.25rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            background: #111111;
+            color: #F6F5F2;
+            border: 1px solid #111111;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .signup button:hover {
+            background: #333333;
+            border-color: #333333;
+        }
+
+        footer {
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.8125rem;
+            color: #AAAAAA;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.625rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+            }
+
+            .signup {
+                flex-direction: column;
+                gap: 0.625rem;
+            }
+
+            .signup input {
+                border-right: 1px solid #D0CFC9;
+                border-radius: 4px;
+            }
+
+            .signup input:focus {
+                border-color: #111111;
+            }
+
+            .signup button {
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1 class="logo">Verifix IO</h1>
+            <p class="tagline">Code quality for what matters most.</p>
+            <p class="timeline">Coming Summer 2026</p>
+            <div class="signup">
+                <input type="email" placeholder="you@company.com" aria-label="Email address">
+                <button type="button">Get Early Access</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2026 Verifix IO</p>
+    </footer>
+</body>
+</html>
