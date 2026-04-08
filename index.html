@@ -180,16 +180,14 @@
         <p>Be the first to know when we launch.</p>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
         <form id="waitlist-form" action="https://docs.google.com/forms/d/e/1FAIpQLScECEPsGlxqrOsmUc9pn3PvIclaxMza4NXXz7qTpf6dH5OXOw/formResponse" method="POST" target="hidden_iframe">
-            <input type="email" id="email-input" placeholder="Enter your email" required>
-            <input type="hidden" name="entry.232464411" id="entry-field">
+            <input type="email" name="entry.232464411" placeholder="Enter your email" required>
             <button type="submit">Notify Me</button>
         </form>
         <script>
             document.getElementById('waitlist-form').addEventListener('submit', function() {
-                document.getElementById('entry-field').value = document.getElementById('email-input').value;
                 var form = this;
                 setTimeout(function() {
-                    form.parentElement.querySelector('form').outerHTML = '<p style="color:#a0978e;font-size:1.1rem;">Thank you. We\'ll be in touch.</p>';
+                    form.outerHTML = '<p style="color:#a0978e;font-size:1.1rem;">Thank you. We\'ll be in touch.</p>';
                 }, 500);
             });
         </script>
