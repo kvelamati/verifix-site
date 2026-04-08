@@ -29,7 +29,7 @@
         .site-header h1 {
             font-size: 1.75rem;
             font-weight: 500;
-            font-style: italic;
+            font-style: normal;
             letter-spacing: 1px;
             color: #ffffff;
         }
@@ -80,6 +80,88 @@
             max-width: 800px;
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
+
+        /* Waitlist section */
+        .waitlist {
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            background-color: #141414;
+        }
+
+        .waitlist h3 {
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: #e0dcd6;
+            margin-bottom: 0.75rem;
+        }
+
+        .waitlist p {
+            font-size: 1rem;
+            color: #6b6560;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .waitlist form {
+            display: flex;
+            gap: 0;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+
+        .waitlist input[type="email"] {
+            flex: 1;
+            padding: 0.85rem 1.2rem;
+            border: 1px solid #333;
+            border-right: none;
+            background: transparent;
+            color: #fff;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .waitlist input[type="email"]::placeholder {
+            color: #555;
+        }
+
+        .waitlist input[type="email"]:focus {
+            border-color: #7a6a58;
+        }
+
+        .waitlist button {
+            padding: 0.85rem 1.8rem;
+            background: #f0ece4;
+            color: #1a1a1a;
+            border: 1px solid #f0ece4;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .waitlist button:hover {
+            background: transparent;
+            color: #f0ece4;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            background-color: #111;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            color: #4a4540;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 <body>
@@ -92,5 +174,18 @@
             <h2>Advanced Solutions for Manufacturing</h2>
         </div>
     </section>
+
+    <section class="waitlist">
+        <h3>Something new is coming.</h3>
+        <p>Be the first to know when we launch.</p>
+        <form onsubmit="event.preventDefault(); this.innerHTML='<p style=\'color:#a0978e;font-size:1.1rem;\'>Thank you. We\'ll be in touch.</p>';">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Notify Me</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Verifix IO &mdash; All rights reserved.</p>
+    </footer>
 </body>
 </html>
