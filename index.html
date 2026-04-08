@@ -178,20 +178,19 @@
     <section class="waitlist">
         <h3>Something new is coming.</h3>
         <p>Be the first to know when we launch.</p>
-        <form id="waitlist-form">
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+        <form id="waitlist-form" action="https://docs.google.com/forms/d/e/1FAIpQLScECEPsGlxqrOsmUc9pn3PvIclaxMza4NXXz7qTpf6dH5OXOw/formResponse" method="POST" target="hidden_iframe">
             <input type="email" id="email-input" placeholder="Enter your email" required>
+            <input type="hidden" name="entry.232464411" id="entry-field">
             <button type="submit">Notify Me</button>
         </form>
         <script>
-            document.getElementById('waitlist-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                var email = document.getElementById('email-input').value;
-                var url = 'https://docs.google.com/forms/d/e/1FAIpQLScECEPsGlxqrOsmUc9pn3PvIclaxMza4NXXz7qTpf6dH5OXOw/formResponse';
-                fetch(url + '?entry.232464411=' + encodeURIComponent(email) + '&submit=Submit', {
-                    method: 'POST',
-                    mode: 'no-cors'
-                });
-                this.innerHTML = '<p style="color:#a0978e;font-size:1.1rem;">Thank you. We\'ll be in touch.</p>';
+            document.getElementById('waitlist-form').addEventListener('submit', function() {
+                document.getElementById('entry-field').value = document.getElementById('email-input').value;
+                var form = this;
+                setTimeout(function() {
+                    form.parentElement.querySelector('form').outerHTML = '<p style="color:#a0978e;font-size:1.1rem;">Thank you. We\'ll be in touch.</p>';
+                }, 500);
             });
         </script>
     </section>
