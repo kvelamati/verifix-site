@@ -36,10 +36,18 @@
         }
 
         .hero {
-            position: relative;
+            position: sticky;
+            top: 0;
             width: 100%;
-            height: calc(100vh - 65px);
+            height: 100vh;
             overflow: hidden;
+            z-index: 1;
+        }
+
+        .scroll-spacer {
+            position: relative;
+            height: 50vh;
+            z-index: 2;
         }
 
         .hero img {
@@ -47,6 +55,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            will-change: transform;
         }
 
         .hero::after {
@@ -84,9 +93,24 @@
 
         /* Waitlist section */
         .waitlist {
+            position: relative;
+            z-index: 3;
             padding: 4rem 2rem 5rem;
             text-align: center;
             background-color: #141414;
+            will-change: transform, opacity;
+        }
+
+        .waitlist-glow {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(240, 236, 228, 0), rgba(240, 236, 228, 0.4));
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
         .waitlist h3 {
@@ -151,6 +175,8 @@
 
         /* Footer */
         footer {
+            position: relative;
+            z-index: 3;
             padding: 2.5rem 2rem;
             text-align: center;
             background-color: #111;
@@ -176,7 +202,10 @@
         </div>
     </section>
 
+    <div class="scroll-spacer"></div>
+
     <section class="waitlist">
+        <div class="waitlist-glow" id="glow"></div>
         <h3>Something new is coming.</h3>
         <p>Be the first to know when we launch.</p>
         <iframe name="hidden_iframe" style="display:none;"></iframe>
@@ -193,6 +222,52 @@
             });
         </script>
     </section>
+
+    <script>
+        (function() {
+            var heroImg = document.querySelector('.hero img');
+            var waitlist = document.querySelector('.waitlist');
+            var glow = document.getElementById('glow');
+            var spacer = document.querySelector('.scroll-spacer');
+            var ticking = false;
+
+            waitlist.style.transform = 'translateY(80px)';
+            waitlist.style.opacity = '0';
+
+            function easeOut(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        var spacerTop = spacer.getBoundingClientRect().top;
+                        var viewH = window.innerHeight;
+
+                        var raw = 1 - (spacerTop / viewH);
+                        var progress = Math.min(Math.max(raw, 0), 1);
+                        var eased = easeOut(progress);
+
+                        var imgY = eased * 30;
+                        var imgScale = 1 + eased * 0.05;
+                        heroImg.style.transform = 'translateY(' + imgY + 'px) scale(' + imgScale + ')';
+
+                        var cardY = 80 * (1 - eased);
+                        waitlist.style.transform = 'translateY(' + cardY + 'px)';
+                        waitlist.style.opacity = eased;
+
+                        glow.style.opacity = eased > 0.2 ? Math.min((eased - 0.2) * 1.5, 1) : 0;
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
 
     <footer>
         <p>&copy; 2026 Verifix IO &mdash; All rights reserved.</p>
