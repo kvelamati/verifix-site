@@ -179,17 +179,32 @@
     <section class="waitlist">
         <h3>Something new is coming.</h3>
         <p>Be the first to know when we launch.</p>
-        <iframe name="hidden_iframe" style="display:none;"></iframe>
-        <form id="waitlist-form" action="https://docs.google.com/forms/d/e/1FAIpQLScECEPsGlxqrOsmUc9pn3PvIclaxMza4NXXz7qTpf6dH5OXOw/formResponse" method="POST" target="hidden_iframe">
-            <input type="email" name="entry.232464411" placeholder="Enter your email" required>
+        <form id="waitlist-form">
+            <input type="email" id="email-input" placeholder="Enter your email" required>
             <button type="submit">Notify Me</button>
         </form>
+        <p id="form-status" style="color:#a0978e;font-size:1.1rem;display:none;"></p>
         <script>
-            document.getElementById('waitlist-form').addEventListener('submit', function() {
+            document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var email = document.getElementById('email-input').value;
                 var form = this;
-                setTimeout(function() {
-                    form.outerHTML = '<p style="color:#a0978e;font-size:1.1rem;">Thank you. We\'ll be in touch.</p>';
-                }, 500);
+                var status = document.getElementById('form-status');
+                var formData = new FormData();
+                formData.append('entry.232464411', email);
+                fetch('https://docs.google.com/forms/d/e/1FAIpQLScECEPsGlxqrOsmUc9pn3PvIclaxMza4NXXz7qTpf6dH5OXOw/formResponse', {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData
+                }).then(function() {
+                    form.style.display = 'none';
+                    status.textContent = "Thank you. We'll be in touch.";
+                    status.style.display = 'block';
+                }).catch(function() {
+                    form.style.display = 'none';
+                    status.textContent = "Thank you. We'll be in touch.";
+                    status.style.display = 'block';
+                });
             });
         </script>
     </section>
